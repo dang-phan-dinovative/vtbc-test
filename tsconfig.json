@@ -1,0 +1,36 @@
+{
+    "compilerOptions": {
+      "baseUrl":"./",
+      "paths": {
+        "@root/*": ["src/*"],
+        "@components/*": ["src/components/*"]
+      },
+      "outDir": "build/dist",
+      "rootDirs": ["./"],
+      "module": "commonjs",
+      "target": "es5",
+      "lib": ["es6", "dom"],
+      "sourceMap": true,
+      "allowJs": true,
+      "jsx": "react",
+      "moduleResolution": "node",
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "esModuleInterop": true,
+    },
+    "exclude": [
+      "node_modules",
+      "build",
+      "scripts",
+      "webpack",
+      "jest",
+    ],
+    "include": ["src"],
+    "types": [
+      "typePatches"
+    ],
+    "typeRoots": ["./node_modules/@types", "./src/types"]
+  }
+  

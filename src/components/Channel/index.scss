@@ -1,0 +1,28 @@
+.chatbox-container {
+  position: relative;
+  height: calc(100vh - 50px);
+  padding: 15px 0;
+  .cs-message--incoming,
+  .cs-message--outgoing {
+    .cs-message__header,
+    .cs-message__footer {
+      .cs-message__sender-name,
+      .cs-message__sent-time {
+        display: inline-block;
+      }
+    }
+  }
+  .cs-message--outgoing {
+    .cs-message__content {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+  .cs-message.cs-message--incoming.cs-message--last .cs-message__sent-time {
+    display: inline-block;
+  }
+  .group-tittle {
+    color: #7668ed;
+    font-size: 1.6em;
+    text-transform: uppercase;
+  }
+}
