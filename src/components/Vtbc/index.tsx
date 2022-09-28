@@ -1,4 +1,7 @@
 import React, { useEffect } from 'react'
+import CryptoJS from 'crypto-js';
+import Base64 from 'crypto-js/enc-base64';
+
 import './index.scss'
 
 interface IParams {
@@ -6,6 +9,9 @@ interface IParams {
 }
 
 const page = 'PaymentGateway/Payment'
+
+const secret = '57f84f15c63a3eb6c0a4595aab619786868a275eb1c6360a4d23dde742bc738f'
+const accessCode = '656c5807ce5b76b5660f2cc0bb25c81636cade558f7e97f9ddbb61f5f0b7f145'
 
 const params: IParams = {
     billcode: '22062713721',
@@ -17,10 +23,11 @@ const params: IParams = {
     cancel_url: 'http://118.70.72.107:4003/',
     trans_amount: 64800,
     amount: 60000,
-    fee: 4800,
-    check_sum: '477d4f8e632acbe0ddab43bf9b0ca81726967f1c'
+    fee: 4800,  
 }
 
+const message = `${accessCode}${params.billcode}${params.command}${params.merchant_code}${params.order_id}${params.trans_amount}${params.amount}${params.fee}`
+params.checksum = Base64.stringify(CryptoJS.HmacSHA1(message, secret))
 const paramString = Object.keys(params).reduce((str, key) => {
     const prefix = str.length > 0 ? '&' : ''
     const value = params[key].toString()
