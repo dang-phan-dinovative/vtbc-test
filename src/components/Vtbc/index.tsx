@@ -5,25 +5,30 @@ interface IParams {
     [key: string]: string| number
 }
 
-const page = 'static/vtbc/success.html'
+const page = 'PaymentGateway/Payment'
 
 const params: IParams = {
-    bnk: '01202001',
-    brc: '01202005',
-    acc: '12210009585858',
-    acctName: 'cong ty quan ly quy VietinBank',
-    amt: 50000,
-    ref: 'nop tien mua ccq VietinBank01 cho tai khoan CCQ123456'
+    billcode: '22062713721',
+    command: 'PAYMENT',
+    desc: 'Mua+vé+Keno',
+    merchant_code: 'VIETINBANK',
+    order_id: '2217801715134',
+    return_url: 'http://118.70.72.107:4003/',
+    cancel_url: 'http://118.70.72.107:4003/',
+    trans_amount: 64800,
+    amount: 60000,
+    fee: 4800,
+    check_sum: '477d4f8e632acbe0ddab43bf9b0ca81726967f1c'
 }
 
 const paramString = Object.keys(params).reduce((str, key) => {
     const prefix = str.length > 0 ? '&' : ''
-    const value = params[key]
-    str += `${prefix}${key}=${value}`
+    const value = params[key].toString()
+    str += `${prefix}${key}=${encodeURIComponent(value)}`
     return str
 }, '')
 
-const url = `http://localhost:5001/${page}?${encodeURI(paramString)}`
+const url = `https://dev-vietinbank.mobilott.vn/${page}?${(paramString)}`
 
 const Vtbc = () => {
   useEffect(() => {
